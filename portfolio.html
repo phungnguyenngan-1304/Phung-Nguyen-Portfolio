@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngan Phung Nguyen | Accounting & Financial Analytics Portfolio</title>
+    <!-- Custom External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Custom Config -->
+    <script src="tailwind.config.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="bg-beige-100 text-navy-900 font-ns antialiased selection:bg-glacier-500 selection:text-white">
+
+    <div id="canvas-container"></div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 liquid-glass border-b border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-900 to-navy-800 flex items-center justify-center text-white font-bold shadow-lg shadow-navy-900/20 group-hover:bg-glacier-500 transition-all duration-300">
+                    <i data-lucide="pie-chart" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-tight text-navy-900">Ngan Phung Nguyen</span>
+                    <span class="block text-xs text-slate-500 font-medium tracking-wider uppercase">B.S. Accounting | UT Dallas</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="#hero" class="text-navy-800 hover:text-glacier-600 transition-colors">About Me</a>
+                <a href="#projects" class="text-navy-800 hover:text-glacier-600 transition-colors">Projects</a>
+                <a href="#process" class="text-navy-800 hover:text-glacier-600 transition-colors">Process</a>
+                <a href="#resume" class="text-navy-800 hover:text-glacier-600 transition-colors">Resume</a>
+                <a href="#contact" class="text-navy-800 hover:text-glacier-600 transition-colors">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-navy-900 hover:bg-glacier-600 text-white font-semibold text-sm shadow-lg shadow-navy-900/10 transition-all hover:scale-105">
+                    <i data-lucide="send" class="w-4 h-4 text-glacier-400"></i>
+                    <span>Let's Connect</span>
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-white/80 text-navy-900 hover:text-glacier-600 border border-slate-200">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile dropdown menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-6 space-y-3 liquid-glass border-t border-slate-200">
+            <a href="#hero" class="block py-2 text-navy-900 font-semibold hover:text-glacier-600">About Me</a>
+            <a href="#projects" class="block py-2 text-navy-900 font-semibold hover:text-glacier-600">Projects</a>
+            <a href="#process" class="block py-2 text-navy-900 font-semibold hover:text-glacier-600">Process</a>
+            <a href="#resume" class="block py-2 text-navy-900 font-semibold hover:text-glacier-600">Resume</a>
+            <a href="#contact" class="block py-2 text-navy-900 font-semibold hover:text-glacier-600">Contact</a>
+        </div>
+    </header>
+
+    <section id="hero" class="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Header Content -->
+            <div class="lg:col-span-7 space-y-6 z-10">
+                <div class="flex items-center justify-between border-b border-slate-300/60 pb-4">
+                    <span class="text-xs font-mono uppercase tracking-widest text-slate-500 font-bold">Accounting Student | Aspiring CPA | Inventory & Audit Analytics</span>
+                    <span class="text-xs font-mono uppercase tracking-widest text-glacier-600 font-bold flex items-center gap-1.5">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Garland, Texas
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-7xl font-extrabold tracking-tight text-navy-900 uppercase leading-none font-serif">
+                    About Me
+                </h1>
+                
+                <p class="text-xl sm:text-2xl text-slate-700 italic font-light leading-relaxed">
+                    From raw inventory transactions and procurement cycles to verified financial statements — applying US GAAP and internal controls to reconcile end-to-end operations into <span class="text-glacier-600 not-italic font-semibold">actionable financial insights</span>.
+                </p>
+
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                  Hi, I am <strong>Ngan (Phung) Nguyen</strong> — an Accounting student at <strong>The University of Texas at Dallas (Naveen Jindal School of Management)</strong> pursuing a B.S. in Accounting (Expected May 2028), holding an Associate of Science in Accounting (<strong>GPA 4.00</strong>) from Dallas College. With practical experience as an Inventory Control Specialist at IntraPack Industries, administrative systems at Flashship Logistic, and completion of PwC's Virtual Audit Engagement, I bridge core GAAP accounting with modern data analytics using Excel (Power Query, PivotTables, XLOOKUP), Power BI, and SQL.
+                </p>
+            </div>
+
+            <!-- Right Profile Picture Editorial Frame (interactive tilt) -->
+            <div class="lg:col-span-5 flex justify-center lg:justify-end z-10">
+                <div id="profile-tilt-wrap" class="relative w-full max-w-sm group">
+                    <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-glacier-500 to-navy-900 opacity-25 blur-xl group-hover:opacity-40 transition-opacity"></div>
+                    <div id="profile-tilt-card" class="liquid-glass rounded-3xl p-4 sm:p-5 relative shadow-xl space-y-4">
+                        <div class="tilt-layer w-full h-80 sm:h-96 rounded-2xl overflow-hidden shadow-inner border border-white/80 bg-slate-200 relative">
+                            <!-- Professional portrait picture with fallback -->
+                            <img src="image/avatar_image.JPG" alt="Ngan Phung Nguyen" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/40 to-transparent pointer-events-none"></div>
+                            <div id="profile-glare"></div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white text-center">
+                                <span class="block text-sm font-bold">Ngan Phung Nguyen</span>
+                                <span class="text-xs text-glacier-300 font-mono">B.S. Accounting | UT Dallas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Stats Bar Row -->
+        <div class="mt-16 liquid-glass rounded-3xl p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-4 gap-6 text-center border border-slate-200 shadow-xl">
+            <div class="space-y-1 sm:border-r sm:border-slate-200/80">
+                <div class="text-3xl sm:text-4xl font-extrabold text-navy-900 font-serif">4.00</div>
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Associate Degree GPA</div>
+            </div>
+            <div class="space-y-1 sm:border-r sm:border-slate-200/80">
+                <div class="text-3xl sm:text-4xl font-extrabold text-navy-900 font-serif">~80%</div>
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Inventory Accuracy Boost</div>
+            </div>
+            <div class="space-y-1 sm:border-r sm:border-slate-200/80">
+                <div class="text-3xl sm:text-4xl font-extrabold text-navy-900 font-serif">500+</div>
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Records Digitized & Audited</div>
+            </div>
+            <div class="space-y-1">
+                <div class="text-3xl sm:text-4xl font-extrabold text-navy-900 font-serif">100%</div>
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-500">US GAAP & Accrual Compliance</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 relative bg-white/40 border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div class="space-y-2">
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-glacier-600">Portfolio Showcase</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-navy-900 font-serif">Selected Works</h2>
+                </div>
+                <!-- Category Filter Tabs -->
+                <div class="inline-flex p-1.5 rounded-2xl liquid-glass gap-2 border border-slate-200">
+                    <button onclick="filterProjects('all')" id="btn-all" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-navy-900 text-white shadow-md">
+                        All Projects
+                    </button>
+                    <button onclick="filterProjects('cycle')" id="btn-cycle" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-navy-800 hover:text-glacier-600">
+                        Accounting Cycle
+                    </button>
+                    <button onclick="filterProjects('analysis')" id="btn-analysis" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-navy-800 hover:text-glacier-600">
+                        Financial Analysis
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: PwC Audit Virtual Experience -->
+                <div onclick="openProjectModal('PwC Audit Simulation: Purchasing Cycle & Internal Controls', 'Evaluated purchasing cycle processes and documented operational risks through a simulated audit engagement involving accounts payable and procurement transactions. Prepared a process flowchart, walkthrough documentation, and risk control matrix (RCM) to assess internal controls and identify opportunities for process improvement. Reviewed financial records, purchasing policies, and supporting documentation to perform control testing using ERP-generated data to identify transaction discrepancies and recommend corrective actions.', 'PwC Audit #01', 'PwC Audit Simulation / Risk Control Matrix (RCM) / AP & Procurement / ERP Control Testing')" class="project-card liquid-glass rounded-3xl overflow-hidden flex flex-col justify-between liquid-glass-hover border border-slate-200 cursor-pointer group" data-category="cycle">
+                    <div class="h-56 overflow-hidden relative bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600" alt="PwC Audit Simulation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-navy-900/90 text-white font-mono text-xs font-bold backdrop-blur-md">PwC AUDIT</div>
+                    </div>
+                    <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-glacier-600 uppercase tracking-widest">PwC Virtual Experience (Forage)</span>
+                            <h3 class="text-xl font-bold text-navy-900 group-hover:text-glacier-600 transition-colors">Purchasing Cycle & Risk Control Matrix</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Evaluated AP and procurement cycles, drafted walkthrough documentation, and built a Risk Control Matrix with ERP control testing.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">July 2025</span>
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Manufacturing Accounting Cycle -->
+                <div onclick="openProjectModal('Full Accounting Cycle for Manufacturing Business', 'Completed the full accounting cycle for a manufacturing enterprise, applying accrual accounting principles to record, adjust, and analyze financial transactions. Compiled multi-step financial statements, conducted comprehensive account reconciliations to ensure ledger integrity, and developed an interactive Excel dashboard to visualize key financial KPIs.', 'Accounting Cycle #01', 'Accrual Accounting / Account Reconciliation / Financial Statements / Excel Dashboards')" class="project-card liquid-glass rounded-3xl overflow-hidden flex flex-col justify-between liquid-glass-hover border border-slate-200 cursor-pointer group" data-category="cycle">
+                    <div class="h-56 overflow-hidden relative bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=600" alt="Manufacturing Accounting Cycle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-navy-900/90 text-white font-mono text-xs font-bold backdrop-blur-md">CYCLE #01</div>
+                    </div>
+                    <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-glacier-600 uppercase tracking-widest">Financial Accounting (ACCT 2301 & 2302)</span>
+                            <h3 class="text-xl font-bold text-navy-900 group-hover:text-glacier-600 transition-colors">Manufacturing Cycle & Dashboard</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Executed complete accrual accounting cycle, multi-step financial statements, account reconciliation, and dynamic Excel KPI dashboard.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">2024</span>
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Inventory Discrepancy & Variance Investigation -->
+                <div onclick="openProjectModal('System vs Physical Inventory Audit & Variance Investigation', 'Improved inventory record accuracy to approximately 80% through systematic cycle counts, discrepancy investigations, and data validation procedures. Investigated discrepancies between physical inventory and ERP system records, identifying potential internal control gaps and reducing excess material purchases. Collaborated cross-functionally with warehouse and operations teams to optimize inventory organization and operational efficiency.', 'Operations Analysis #01', 'Cycle Counts / Discrepancy Investigation / Internal Control Hardening / ERP Reconciliation')" class="project-card liquid-glass rounded-3xl overflow-hidden flex flex-col justify-between liquid-glass-hover border border-slate-200 cursor-pointer group" data-category="analysis">
+                    <div class="h-56 overflow-hidden relative bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600" alt="Inventory Audit & Control" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-navy-900/90 text-white font-mono text-xs font-bold backdrop-blur-md">INVENTORY #01</div>
+                    </div>
+                    <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-glacier-600 uppercase tracking-widest">IntraPack Industries Experience</span>
+                            <h3 class="text-xl font-bold text-navy-900 group-hover:text-glacier-600 transition-colors">Inventory Accuracy & Control Gap Audit</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Increased inventory record accuracy to ~80% via cycle counts, physical vs system discrepancy investigations, and control hardening.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">2025 – 2026</span>
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Financial Statements Suite -->
+                <div onclick="openProjectModal('Financial Statements Suite (Multi-Step IS & BS)', 'Built a fully dynamic multi-step Income Statement, Classified Balance Sheet, and Statement of Cash Flows (Indirect Method) adhering strictly to US GAAP and FASB presentation standards with comprehensive account reconciliation worksheets.', 'Accounting Cycle #02', 'US GAAP / FASB Standards / Indirect Cash Flows / Balance Sheet Classification')" class="project-card liquid-glass rounded-3xl overflow-hidden flex flex-col justify-between liquid-glass-hover border border-slate-200 cursor-pointer group" data-category="cycle">
+                    <div class="h-56 overflow-hidden relative bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="Financial Statements Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-navy-900/90 text-white font-mono text-xs font-bold backdrop-blur-md">CYCLE #02</div>
+                    </div>
+                    <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-glacier-600 uppercase tracking-widest">US GAAP / FASB Compliance</span>
+                            <h3 class="text-xl font-bold text-navy-900 group-hover:text-glacier-600 transition-colors">Multi-Step IS & Classified Balance Sheet</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Dynamic multi-step income statement, classified balance sheet, and indirect cash flow reconciliations conforming to FASB rules.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">2026</span>
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Power BI & Advanced Excel Modeling -->
+                <div onclick="openProjectModal('Automated Financial Analytics & Power BI Dashboard', 'Engineered automated financial models leveraging Power Query, Power BI, and advanced Excel functions (PivotTables, XLOOKUP, data validation). Cleaned and transformed transaction tables, built dynamic visual dashboards, and performed liquidity and ratio analysis to support strategic decision-making.', 'Data Analytics #01', 'Power BI / Power Query / XLOOKUP / SQL / Financial Modeling')" class="project-card liquid-glass rounded-3xl overflow-hidden flex flex-col justify-between liquid-glass-hover border border-slate-200 cursor-pointer group" data-category="analysis">
+                    <div class="h-56 overflow-hidden relative bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" alt="Financial Analytics & Power BI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-navy-900/90 text-white font-mono text-xs font-bold backdrop-blur-md">ANALYTICS #01</div>
+                    </div>
+                    <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-glacier-600 uppercase tracking-widest">Power BI & Advanced Excel Modeling</span>
+                            <h3 class="text-xl font-bold text-navy-900 group-hover:text-glacier-600 transition-colors">Power BI Financial Dashboard & Power Query</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Automated data pipelines using Power Query, SQL, and Power BI dashboards to track financial ratios, liquidity, and operational metrics.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">2025</span>
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Centralized Compliance Database & Record Audit -->
+                <div onclick="openProjectModal('Centralized Electronic Records Database & Compliance Audit', 'Maintained and updated 500+ confidential employee files and records with up to 100% accuracy in collaboration with the HR department. Improved document retrieval speed by 30% by designing and migrating records into a centralized electronic database, ensuring strict regulatory compliance, data confidentiality, and internal audit readiness.', 'Controls & Systems #01', 'Electronic Database / 100% Record Accuracy / Compliance Audit / Workflow Speed')" class="project-card liquid-glass rounded-3xl overflow-hidden flex flex-col justify-between liquid-glass-hover border border-slate-200 cursor-pointer group" data-category="cycle">
+                    <div class="h-56 overflow-hidden relative bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&q=80&w=600" alt="Compliance Database" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-navy-900/90 text-white font-mono text-xs font-bold backdrop-blur-md">COMPLIANCE #01</div>
+                    </div>
+                    <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-glacier-600 uppercase tracking-widest">Flashship Logistic Experience</span>
+                            <h3 class="text-xl font-bold text-navy-900 group-hover:text-glacier-600 transition-colors">Centralized Records & Compliance Database</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Structured and audited 500+ confidential records with 100% accuracy, boosting document retrieval speed by 30% for audit readiness.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">2025</span>
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-glacier-600">Methodology</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-navy-900 font-serif">My Analytical Process</h2>
+                <p class="text-slate-600 text-base sm:text-lg">
+                    A rigorous 5-step framework applied to every financial model, audit check, and ledger compilation.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                <!-- Step 1 -->
+                <div class="liquid-glass rounded-3xl p-6 text-center space-y-4 relative border border-slate-200 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-serif font-bold text-lg flex items-center justify-center mx-auto shadow-md">
+                        01
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">DISCOVER</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Gather raw source documents, bank statements, and ERP general ledger logs.
+                    </p>
+                </div>
+                <!-- Step 2 -->
+                <div class="liquid-glass rounded-3xl p-6 text-center space-y-4 relative border border-slate-200 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-serif font-bold text-lg flex items-center justify-center mx-auto shadow-md">
+                        02
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">PLAN</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Establish audit scope, GAAP compliance framework, and control testing strategy.
+                    </p>
+                </div>
+                <!-- Step 3 -->
+                <div class="liquid-glass rounded-3xl p-6 text-center space-y-4 relative border border-slate-200 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-serif font-bold text-lg flex items-center justify-center mx-auto shadow-md">
+                        03
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">MODEL</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Build dynamic trial balances, adjusting entries, and DCF valuation worksheets.
+                    </p>
+                </div>
+                <!-- Step 4 -->
+                <div class="liquid-glass rounded-3xl p-6 text-center space-y-4 relative border border-slate-200 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-serif font-bold text-lg flex items-center justify-center mx-auto shadow-md">
+                        04
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">ANALYZE</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Execute variance breakdowns, ratio benchmarks, and sensitivity testing.
+                    </p>
+                </div>
+                <!-- Step 5 -->
+                <div class="liquid-glass rounded-3xl p-6 text-center space-y-4 relative border border-slate-200 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-serif font-bold text-lg flex items-center justify-center mx-auto shadow-md">
+                        05
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">REPORT</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Compile verified financial statements and executive advisory insights.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-4 sm:px-6 lg:px-8 relative bg-white/40 border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-glacier-600">Kind Words</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-navy-900 font-serif">Testimonials</h2>
+                <p class="text-slate-600 text-base sm:text-lg">
+                    Feedback from professors, accounting mentors, and collaborative project peers.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="liquid-glass rounded-3xl p-8 space-y-6 border border-slate-200 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <i data-lucide="quote" class="w-8 h-8 text-glacier-500"></i>
+                        <p class="text-slate-700 text-sm italic leading-relaxed">
+                            "Phung demonstrated exceptional mastery in completing the full manufacturing accounting cycle and financial statement reconciliations. Her precision and analytical rigor are truly commendable."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-200">
+                        <div class="w-10 h-10 rounded-full bg-slate-300 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" alt="Accounting Faculty" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-navy-900">Accounting Faculty</h4>
+                            <p class="text-xs text-slate-500">Financial Accounting, Dallas College / UT Dallas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="liquid-glass rounded-3xl p-8 space-y-6 border border-slate-200 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <i data-lucide="quote" class="w-8 h-8 text-glacier-500"></i>
+                        <p class="text-slate-700 text-sm italic leading-relaxed">
+                            "At IntraPack Industries, Phung improved our inventory record accuracy to ~80% through methodical cycle counts and root-cause discrepancy investigations. Her internal control insights saved tangible costs."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-200">
+                        <div class="w-10 h-10 rounded-full bg-slate-300 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150" alt="Operations Manager" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-navy-900">Operations & Inventory Manager</h4>
+                            <p class="text-xs text-slate-500">IntraPack Industries INC.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="liquid-glass rounded-3xl p-8 space-y-6 border border-slate-200 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <i data-lucide="quote" class="w-8 h-8 text-glacier-500"></i>
+                        <p class="text-slate-700 text-sm italic leading-relaxed">
+                            "Phung audited and centralized over 500 employee records with zero discrepancy while improving retrieval speed by 30%. Her work ethic, confidentiality, and organizational skills are exemplary."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-200">
+                        <div class="w-10 h-10 rounded-full bg-slate-300 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150" alt="Logistics Director" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-navy-900">HR & Administrative Lead</h4>
+                            <p class="text-xs text-slate-500">Flashship Logistic LLC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-glacier-600">Qualifications</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-navy-900 font-serif">Interactive Resume & Credentials</h2>
+                <p class="text-slate-600 text-base sm:text-lg">
+                    Academic standing, professional accounting & inventory experience, and virtual audit certifications.
+                </p>
+            </div>
+
+            <div class="liquid-glass rounded-3xl p-6 sm:p-10 relative shadow-xl border border-slate-200 space-y-8">
+                <!-- Resume Toolbar -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-navy-900 text-white flex items-center justify-center font-bold">
+                            <i data-lucide="file-text" class="w-5 h-5 text-glacier-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-navy-900">Ngan_Phung_Nguyen_Resume.pdf</h3>
+                            <p class="text-xs text-slate-500">Updated 2026 Version • Garland, TX</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                        <button onclick="downloadResume()" class="flex-1 sm:flex-none px-6 py-3 rounded-xl bg-navy-900 hover:bg-glacier-600 text-white font-bold text-sm shadow-lg shadow-navy-900/15 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="download" class="w-4 h-4 text-glacier-400"></i>
+                            <span>Download Resume</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resume Preview Box -->
+                <div class="bg-white/90 rounded-2xl p-6 sm:p-8 border border-slate-200 space-y-8 font-sans text-slate-800">
+                    <div class="text-center space-y-1.5 border-b border-slate-200 pb-6">
+                        <h4 class="text-2xl sm:text-3xl font-bold text-navy-900 tracking-wide font-serif">Ngan Phung Nguyen</h4>
+                        <p class="text-xs sm:text-sm font-mono text-slate-600">
+                            Garland, TX &bull; (469)-954-7798 &bull; <a href="mailto:phungnguyenngan@gmail.com" class="text-glacier-600 hover:underline">phungnguyenngan@gmail.com</a> &bull; <a href="https://www.linkedin.com/in/nphungng034/" target="_blank" class="text-glacier-600 hover:underline">linkedin.com/in/nphungng034</a>
+                        </p>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-bold uppercase tracking-widest text-glacier-600 flex items-center gap-2">
+                            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education Experience
+                        </h5>
+                        <div class="space-y-3">
+                            <div class="space-y-1">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between font-bold text-navy-900">
+                                    <span>University of Texas at Dallas &bull; Richardson, TX</span>
+                                    <span class="text-xs font-mono text-slate-500">Expected May 2028</span>
+                                </div>
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between text-sm text-slate-700">
+                                    <span>Naveen Jindal School of Management — Bachelor of Science, Accounting</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Relevant Coursework: Financial Accounting, Managerial Accounting</p>
+                            </div>
+                            <div class="space-y-1 pt-2 border-t border-slate-100">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between font-bold text-navy-900">
+                                    <span>Dallas College &bull; Richardson, TX</span>
+                                    <span class="text-xs font-mono text-slate-500">May 2025</span>
+                                </div>
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between text-sm text-slate-700">
+                                    <span>Associate of Science, Accounting</span>
+                                    <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">GPA 4.00 / 4.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Experience -->
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-bold uppercase tracking-widest text-glacier-600 flex items-center gap-2">
+                            <i data-lucide="briefcase" class="w-4 h-4"></i> Professional Experience
+                        </h5>
+                        <div class="space-y-5 text-sm">
+                            <div class="space-y-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between font-bold text-navy-900">
+                                    <span>IntraPack Industries INC. &bull; Dallas, TX</span>
+                                    <span class="text-xs font-mono text-slate-500">August 2025 – June 2026</span>
+                                </div>
+                                <div class="text-xs font-semibold text-glacier-600">Inventory Control Specialist</div>
+                                <ul class="list-disc list-inside space-y-1 text-xs text-slate-600 leading-relaxed pl-1">
+                                    <li>Improved inventory record accuracy to approximately 80% through systematic cycle counts, discrepancy investigations, and data validation procedures.</li>
+                                    <li>Investigated discrepancies between physical inventory and system records, identifying potential control gaps and reducing excess material purchases.</li>
+                                    <li>Collaborated with warehouse and operations teams to optimize inventory organization, improve record accessibility, and increase operational efficiency.</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-2 pt-2 border-t border-slate-100">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between font-bold text-navy-900">
+                                    <span>Flashship Logistic LLC &bull; Richardson, TX</span>
+                                    <span class="text-xs font-mono text-slate-500">January 2025 – April 2025</span>
+                                </div>
+                                <div class="text-xs font-semibold text-glacier-600">Administrative Assistant</div>
+                                <ul class="list-disc list-inside space-y-1 text-xs text-slate-600 leading-relaxed pl-1">
+                                    <li>Maintained and updated 500+ confidential employee files and HR records (paper and electronic) with up to 100% accuracy by collaborating with the HR department.</li>
+                                    <li>Improved document retrieval speed by 30% by scanning, filing, and organizing HR documents into a centralized electronic database, ensuring compliance and easy accessibility.</li>
+                                    <li>Coordinated communications and scheduled meetings with internal and external stakeholders, demonstrating strong attention to detail and organizational skills.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic & Virtual Projects -->
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-bold uppercase tracking-widest text-glacier-600 flex items-center gap-2">
+                            <i data-lucide="folder-kanban" class="w-4 h-4"></i> Academic Project Experience
+                        </h5>
+                        <div class="space-y-4 text-sm">
+                            <div class="space-y-1.5">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between font-bold text-navy-900">
+                                    <span>PwC – Audit Virtual Experience Program, Forage</span>
+                                    <span class="text-xs font-mono text-slate-500">July 2025</span>
+                                </div>
+                                <ul class="list-disc list-inside space-y-1 text-xs text-slate-600 leading-relaxed pl-1">
+                                    <li>Evaluated purchasing cycle processes and documented operational risks through a simulated audit engagement involving accounts payable and procurement transactions.</li>
+                                    <li>Prepared a process flowchart, walkthrough documentation, and risk control matrix (RCM) to assess internal controls and identify opportunities for process improvement.</li>
+                                    <li>Reviewed financial records, purchasing policies, and supporting documentation to perform control testing using ERP-generated data to identify transaction discrepancies and recommend corrective actions.</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-1.5 pt-2 border-t border-slate-100">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between font-bold text-navy-900">
+                                    <span>Accounting Cycle for Manufacturing Business &bull; Financial Accounting (ACCT 2301 & 2302)</span>
+                                    <span class="text-xs font-mono text-slate-500">March 2024 – May 2024</span>
+                                </div>
+                                <ul class="list-disc list-inside space-y-1 text-xs text-slate-600 leading-relaxed pl-1">
+                                    <li>Completed the full accounting cycle for a manufacturing business, applying accrual accounting principles to record and analyze transactions.</li>
+                                    <li>Prepared financial statements and performed account reconciliations to verify accuracy and identify discrepancies.</li>
+                                    <li>Developed an Excel dashboard to present key financial metrics and support financial analysis.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Core Skills Matrix -->
+                    <div class="space-y-3 pt-2">
+                        <h5 class="text-xs font-bold uppercase tracking-widest text-glacier-600 flex items-center gap-2">
+                            <i data-lucide="award" class="w-4 h-4"></i> Technical & Professional Skills
+                        </h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1">
+                                <span class="font-bold text-navy-900 block flex items-center gap-1.5">
+                                    <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-glacier-600"></i> Advanced Excel
+                                </span>
+                                <span class="text-slate-600 block">PivotTables, Power Query, XLOOKUP, Data Validation, Dynamic Dashboards</span>
+                            </div>
+                            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1">
+                                <span class="font-bold text-navy-900 block flex items-center gap-1.5">
+                                    <i data-lucide="bar-chart-2" class="w-3.5 h-3.5 text-glacier-600"></i> Data & Analytics
+                                </span>
+                                <span class="text-slate-600 block">Power BI, SQL (beginner), Data Cleaning & Transformation</span>
+                            </div>
+                            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1">
+                                <span class="font-bold text-navy-900 block flex items-center gap-1.5">
+                                    <i data-lucide="check-square" class="w-3.5 h-3.5 text-glacier-600"></i> Accounting & Audit
+                                </span>
+                                <span class="text-slate-600 block">Financial Statements, Account Reconciliation, Accrual Accounting, Internal Controls</span>
+                            </div>
+                            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1">
+                                <span class="font-bold text-navy-900 block flex items-center gap-1.5">
+                                    <i data-lucide="layers" class="w-3.5 h-3.5 text-glacier-600"></i> Software Tools
+                                </span>
+                                <span class="text-slate-600 block">Microsoft Word, PowerPoint, Outlook, ERP Systems & Electronic Databases</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 relative bg-white/50 border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto">
+            <!-- Reference-style Collaboration Banner -->
+            <div class="rounded-3xl p-8 sm:p-12 bg-navy-900 text-white shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 mb-16 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-glacier-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="space-y-2 text-center lg:text-left z-10">
+                    <div class="flex items-center justify-center lg:justify-start gap-2 text-glacier-400">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        <span class="text-xs font-mono uppercase tracking-widest font-bold">Let's Connect</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold font-serif">Let's create something meaningful together.</h2>
+                    <p class="text-slate-300 text-sm">Open for accounting & audit internships, financial analysis roles, and collaborative projects.</p>
+                </div>
+                <a href="#contact-form-section" class="px-8 py-4 rounded-xl bg-glacier-500 hover:bg-glacier-600 text-white font-bold text-sm shadow-xl transition-all hover:scale-105 z-10 whitespace-nowrap">
+                    GET IN TOUCH →
+                </a>
+            </div>
+
+            <div id="contact-form-section" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <!-- Contact Channels -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="liquid-glass rounded-3xl p-8 space-y-6 border border-slate-200 shadow-xl">
+                        <h3 class="text-xl font-bold text-navy-900 font-serif">Contact Channels</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Whether you have an internship or full-time opportunity, want to discuss accounting standards, or connect regarding CPA preparation, my inbox is always open.
+                        </p>
+                        <div class="space-y-4 pt-2">
+                            <a href="mailto:phungnguyenngan@gmail.com" class="flex items-center gap-4 p-4 rounded-2xl bg-white/60 border border-slate-200 hover:border-glacier-500 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                    <i data-lucide="mail" class="w-5 h-5 text-glacier-400 group-hover:text-white"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-medium text-slate-500">Direct Email</span>
+                                    <span class="text-sm font-bold text-navy-900">phungnguyenngan@gmail.com</span>
+                                </div>
+                            </a>
+                            <a href="https://www.linkedin.com/in/nphungng034/" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-white/60 border border-slate-200 hover:border-glacier-500 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                    <i data-lucide="linkedin" class="w-5 h-5 text-glacier-400 group-hover:text-white"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-medium text-slate-500">LinkedIn Profile</span>
+                                    <span class="text-sm font-bold text-navy-900">linkedin.com/in/nphungng034</span>
+                                </div>
+                            </a>
+                            <a href="tel:4699547798" class="flex items-center gap-4 p-4 rounded-2xl bg-white/60 border border-slate-200 hover:border-glacier-500 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-navy-900 text-white flex items-center justify-center group-hover:bg-glacier-500 transition-colors">
+                                    <i data-lucide="phone" class="w-5 h-5 text-glacier-400 group-hover:text-white"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-medium text-slate-500">Phone Number</span>
+                                    <span class="text-sm font-bold text-navy-900">(469) 954-7798</span>
+                                </div>
+                            </a>
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/60 border border-slate-200">
+                                <div class="w-12 h-12 rounded-xl bg-navy-900 text-white flex items-center justify-center">
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-glacier-400"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-medium text-slate-500">Location</span>
+                                    <span class="text-sm font-bold text-navy-900">Garland, TX (DFW Area)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <div class="liquid-glass rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-xl">
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-navy-900">Your Name</label>
+                                    <input type="text" id="form-name" required class="w-full bg-white/80 border border-slate-200 rounded-xl px-4 py-3.5 text-navy-900 placeholder-slate-400 focus:outline-none focus:border-glacier-500 transition-colors text-sm" placeholder="Jane Doe">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-navy-900">Email Address</label>
+                                    <input type="email" id="form-email" required class="w-full bg-white/80 border border-slate-200 rounded-xl px-4 py-3.5 text-navy-900 placeholder-slate-400 focus:outline-none focus:border-glacier-500 transition-colors text-sm" placeholder="jane@company.com">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-navy-900">Subject / Inquiry Type</label>
+                                <select id="form-subject" class="w-full bg-white/80 border border-slate-200 rounded-xl px-4 py-3.5 text-navy-900 focus:outline-none focus:border-glacier-500 transition-colors text-sm">
+                                    <option value="Internship Opportunity">Internship / Full-Time Role</option>
+                                    <option value="Audit & Accounting Discussion">Audit & Accounting Discussion</option>
+                                    <option value="Project Collaboration">Project Collaboration</option>
+                                    <option value="Other">Other Inquiry</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-navy-900">Message</label>
+                                <textarea id="form-message" rows="5" required class="w-full bg-white/80 border border-slate-200 rounded-xl px-4 py-3.5 text-navy-900 placeholder-slate-400 focus:outline-none focus:border-glacier-500 transition-colors text-sm resize-none" placeholder="Hello Phung, we'd love to discuss an accounting opportunity with you..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 rounded-xl bg-navy-900 hover:bg-glacier-600 text-white font-bold text-sm shadow-xl shadow-navy-900/15 transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4 text-glacier-400"></i>
+                                <span>Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-slate-200/80 bg-beige-50 text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-navy-900 flex items-center justify-center text-white font-bold">
+                    <i data-lucide="pie-chart" class="w-4 h-4 text-glacier-400"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-navy-900 block">Ngan Phung Nguyen</span>
+                    <span class="text-[10px] text-slate-500 uppercase tracking-widest">Accounting Student &bull; UT Dallas Jindal School of Management</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-6 font-semibold">
+                <a href="#hero" class="hover:text-glacier-600 transition-colors">About</a>
+                <a href="#projects" class="hover:text-glacier-600 transition-colors">Projects</a>
+                <a href="#process" class="hover:text-glacier-600 transition-colors">Process</a>
+                <a href="#resume" class="hover:text-glacier-600 transition-colors">Resume</a>
+                <a href="#contact" class="hover:text-glacier-600 transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center gap-3 text-slate-600">
+                <a href="https://www.linkedin.com/in/nphungng034/" target="_blank" class="p-2 rounded-xl bg-white border border-slate-200 hover:border-glacier-500 hover:text-glacier-600 transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                <a href="mailto:phungnguyenngan@gmail.com" class="p-2 rounded-xl bg-white border border-slate-200 hover:border-glacier-500 hover:text-glacier-600 transition-colors"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                <a href="tel:4699547798" class="p-2 rounded-xl bg-white border border-slate-200 hover:border-glacier-500 hover:text-glacier-600 transition-colors"><i data-lucide="phone" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy-900/60 backdrop-blur-md">
+        <div class="liquid-glass rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-slate-200 space-y-6 relative shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-xl bg-navy-900 text-white">
+                        <i data-lucide="file-spreadsheet" class="w-5 h-5 text-glacier-400"></i>
+                    </div>
+                    <span id="modal-category" class="text-xs font-mono font-bold text-glacier-600 uppercase">Category</span>
+                </div>
+                <button onclick="closeProjectModal()" class="p-2 rounded-lg bg-slate-200/80 text-navy-900 hover:text-glacier-600 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <h3 id="modal-title" class="text-xl font-bold text-navy-900 font-serif">Project Title</h3>
+                <p id="modal-desc" class="text-sm text-slate-700 leading-relaxed">
+                    Detailed project description goes here.
+                </p>
+                <div class="p-4 rounded-xl bg-white/80 border border-slate-200 space-y-2 font-mono text-xs text-slate-700">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Audit Status:</span>
+                        <span class="text-emerald-600 font-bold">PASSED / VERIFIED</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Framework:</span>
+                        <span id="modal-framework">US GAAP / IFRS Compliant</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end pt-2">
+                <button onclick="closeProjectModal()" class="px-6 py-2.5 rounded-xl bg-navy-900 hover:bg-glacier-600 text-white font-bold text-xs transition-all shadow-lg">
+                    Close Inspector
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden transform translate-y-20 opacity-0 transition-all duration-300 liquid-glass rounded-2xl p-4 border border-glacier-500/40 shadow-2xl flex items-center gap-3">
+        <div id="toast-icon" class="p-2 rounded-xl bg-emerald-500/20 text-emerald-600">
+            <i data-lucide="check-circle" class="w-5 h-5"></i>
+        </div>
+        <div>
+            <h4 id="toast-title" class="text-xs font-bold text-navy-900">Success</h4>
+            <p id="toast-message" class="text-xs text-slate-600">Action completed successfully.</p>
+        </div>
+    </div>
+
+    <!-- Main JavaScript Logic -->
+    <script src="script.js"></script>
+</body>
+</html>

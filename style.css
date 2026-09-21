@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Phung Nguyen - Portfolio Custom Stylesheet
+   ========================================================================== */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap');
+
+/* Base Body Styles */
+body {
+    background-color: #f7f4ec;
+    color: #0f172a;
+    overflow-x: hidden;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Three.js Fixed Background Container */
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Liquid Glassmorphism Effect */
+.liquid-glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.liquid-glass-hover:hover {
+    border-color: rgba(14, 165, 233, 0.6);
+    box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.18), inset 0 1px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-4px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f7f4ec;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0ea5e9;
+}
+
+/* Interactive Profile Picture Tilt Card */
+#profile-tilt-wrap {
+    perspective: 1200px;
+}
+
+#profile-tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+#profile-tilt-card .tilt-layer {
+    transform: translateZ(30px);
+}
+
+#profile-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.55), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+#profile-tilt-wrap:hover #profile-glare {
+    opacity: 1;
+}
