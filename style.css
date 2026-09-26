@@ -87,3 +87,13 @@ body {
 #profile-tilt-wrap:hover #profile-glare {
     opacity: 1;
 }
+
+
+/* Project case-study hierarchy */
+.section-heading{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(148,163,184,.35)}
+.section-heading span{display:block;font:700 .7rem/1 monospace;letter-spacing:.18em;color:#0284c7;text-transform:uppercase;margin-bottom:.55rem}
+.section-heading h2{font:800 1.65rem/1.15 'Playfair Display',serif;color:#0f172a}
+.skill-item,.result-item{display:flex;align-items:center;gap:.7rem;padding:1rem;border:1px solid rgba(226,232,240,.9);background:rgba(248,250,252,.7);border-radius:1rem;color:#334155;font-size:.9rem}
+.skill-item svg,.result-item svg{width:1.05rem;height:1.05rem;color:#0284c7;flex:none}
+.action-item{display:flex;gap:1rem;align-items:flex-start}.action-item>span{display:flex;width:2rem;height:2rem;align-items:center;justify-content:center;border-radius:.7rem;background:#0f172a;color:white;font:700 .7rem monospace;flex:none}.action-item p{color:#475569;line-height:1.7;padding-top:.25rem}
+@media(max-width:640px){.section-heading h2{font-size:1.4rem}}
